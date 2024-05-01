@@ -1,31 +1,57 @@
 import java.io.IOException;
-import java.net.*;
+import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Scanner;
+import Utils.*;
+import UCS.*;
 
 
 public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
+        // Get input
+        Word.getDictionary("../data/dwyl.txt");
         Scanner input = new Scanner(System.in);
+        System.out.print("Masukkan kata pertama: ");
         String first = input.nextLine();
+        System.out.print("Masukkan kata kedua: ");
         String second = input.nextLine();
 
-        URL start = new URI("https://api.dictionaryapi.dev/api/v2/entries/en/" + first).toURL();
-        HttpURLConnection conn = (HttpURLConnection) start.openConnection();
-        conn.setRequestMethod("GET");
-        conn.connect();
-        int responseCode = conn.getResponseCode();
+        // Check if the word exist
+        boolean firstValid = true, secondValid = true;
+        if (!Word.isWordExist(first)) {
+            firstValid = false;
+        }
+        if (!Word.isWordExist(second)) {
+            secondValid = false;
+        }
 
-        if (responseCode != 200) {
-            System.out.println("Error: " + responseCode);
+        if (!firstValid && !secondValid) {
+            System.out.println("Kedua kata tidak valid.");
+            return;
+        } else if (!firstValid) {
+            System.out.println("Kata pertama tidak valid.");
+            return;
+        } else if (!secondValid){
+            System.out.println("Kata kedua tidak valid.");
+            return;
+        }
+
+        // Check if the length is the same
+        if (!Word.isLengthSame(first, second)) {
+            System.out.println("Kedua kata tidak memiliki panjang yang sama.");
+            Main.main(args);
+        }
+
+        // Solve UCS
+        List<String> path = UCS.findLadder(first, second);
+        if (path == null) {
+            System.out.println("Tidak ada jalur yang ditemukan.");
             return;
         } else {
-            Scanner sc = new Scanner(start.openStream());
-            StringBuilder inline = new StringBuilder();
-            while (sc.hasNext()) {
-                inline.append(sc.nextLine());
+            System.out.println("Jalur yang ditemukan: ");
+            for (String word : path) {
+                System.out.println(word);
             }
-            sc.close();
-            System.out.println(inline);
         }
     }
 }
