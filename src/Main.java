@@ -16,6 +16,7 @@ public class Main {
         String first = input.nextLine().toLowerCase();
         System.out.print("Masukkan kata kedua: ");
         String second = input.nextLine().toLowerCase();
+        System.out.println(Word.dictionary.size());
 
         // Check if the word exist
         boolean firstValid = true, secondValid = true;

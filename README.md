@@ -11,3 +11,6 @@ Sumber dari _Dictionary_:
 **_NOTE_:**
 Ada kemungkinan besar beberapa kata tidak terdaftar pada kamus-kamus yang sudah ditambahkan di atas. Untuk menambahkan kamus Anda sendiri,
 masukkan sebuah file berformat .txt ke folder `/data` yang berisi kumpulan kata dan dipisahkan oleh _newline_ untuk setiap katanya.
+
+**_NOTE_:**
+Semua kata yang dimasukkan dan juga diambil dari `/data` diubah  ke _lowercase_.
