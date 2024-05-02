@@ -1,4 +1,4 @@
-package Utils;
+package Dictionary;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,11 +1,11 @@
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
-import Utils.*;
+import Dictionary.*;
 import UCS.*;
-
+import GBFS.*;
 
 public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
@@ -16,7 +16,13 @@ public class Main {
         String first = input.nextLine().toLowerCase();
         System.out.print("Masukkan kata kedua: ");
         String second = input.nextLine().toLowerCase();
-        System.out.println(Word.dictionary.size());
+//        System.out.println(Word.dictionary.size());
+
+        // Check if the length is the same
+        if (!Word.isLengthSame(first, second)) {
+            System.out.println("Kedua kata tidak memiliki panjang yang sama.");
+            Main.main(args);
+        }
 
         // Check if the word exist
         boolean firstValid = true, secondValid = true;
@@ -38,14 +44,20 @@ public class Main {
             return;
         }
 
-        // Check if the length is the same
-        if (!Word.isLengthSame(first, second)) {
-            System.out.println("Kedua kata tidak memiliki panjang yang sama.");
-            Main.main(args);
+
+        // Give choice: 1. UCS, 2. GBFS, 3. A*
+        System.out.print("Masukkan algoritma yang akan digunakan: ");
+        int choice = input.nextInt();
+        List<String> path = new ArrayList<>();
+        if (choice == 1) {
+            path = UCS.findLadder(first, second);
+        } else if (choice == 2) {
+            path = GBFS.findLadder(first, second);
+        } else {
+            System.out.println("Pilihan tidak valid!");
         }
 
         // Solve UCS
-        List<String> path = UCS.findLadder(first, second);
         if (path == null) {
             System.out.println("Tidak ada jalur yang ditemukan.");
             return;

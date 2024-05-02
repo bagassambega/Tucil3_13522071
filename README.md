@@ -4,7 +4,7 @@
 Sumber dari _Dictionary_:
 1. github.com/dwyl
 2. Merriam-Webster (https://github.com/matthewreagan/WebstersEnglishDictionary/)
-3. Collins (https://boardgames.stackexchange.com/questions/38366/latest-collins-scrabble-words-list-in-text-file)
+3. Collins (https://boardgames.stackexchange.com/questions/38366/latest-collins-scrabble-words-list-in-text-file) (Search through https://www.collinsdictionary.com/dictionary/english)
 4. Linux Mint list of words (libs/word.txt)
 5. Free Dev API (https://github.com/meetDeveloper/freeDictionaryAPI/)
 

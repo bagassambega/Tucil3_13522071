@@ -1,7 +1,7 @@
 package UCS;
 
 import java.util.*;
-import Utils.*;
+import Dictionary.*;
 
 public class UCS {
     public static List<String> getNeighbors(String word) {
