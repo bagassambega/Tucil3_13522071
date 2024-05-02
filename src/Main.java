@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 import Utils.*;
 import UCS.*;
@@ -9,12 +10,12 @@ import UCS.*;
 public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
         // Get input
-        Word.getDictionary("../data/dwyl.txt");
+        DictionaryMaker.makeDictionary("../data");
         Scanner input = new Scanner(System.in);
         System.out.print("Masukkan kata pertama: ");
-        String first = input.nextLine();
+        String first = input.nextLine().toLowerCase();
         System.out.print("Masukkan kata kedua: ");
-        String second = input.nextLine();
+        String second = input.nextLine().toLowerCase();
 
         // Check if the word exist
         boolean firstValid = true, secondValid = true;

@@ -38,7 +38,7 @@ public class UCS {
                 continue;
             }
 
-            if (currentWord.equals(end)) {
+            if (currentWord.equalsIgnoreCase(end)) {
                 List<String> path = new ArrayList<>();
                 Node node = currentNode;
                 while (node != null) {
