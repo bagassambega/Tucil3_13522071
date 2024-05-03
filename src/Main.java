@@ -6,6 +6,7 @@ import java.util.Scanner;
 import Dictionary.*;
 import UCS.*;
 import GBFS.*;
+import A_Star.*;
 
 public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
@@ -53,6 +54,8 @@ public class Main {
             path = UCS.findLadder(first, second);
         } else if (choice == 2) {
             path = GBFS.findLadder(first, second);
+        } else if (choice == 3) {
+            path = A_Star.findLadder(first, second);
         } else {
             System.out.println("Pilihan tidak valid!");
         }
