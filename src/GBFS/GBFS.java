@@ -4,9 +4,11 @@ import Dictionary.*;
 import java.util.*;
 
 public class GBFS {
+    public static int checkedNode = 0;
+
     // Akses ke dictionary di Dictionary/Word.dictionary
     public static List<String> findLadder(String start, String end) {
-        PriorityQueue<HeuristicNode> queue = new PriorityQueue<HeuristicNode>();
+        PriorityQueue<HeuristicNode> queue = new PriorityQueue<>();
         Set <String> visited = new HashSet<>();
 
         int heuristic = HeuristicNode.calculateHeuristic(start, end);
@@ -29,7 +31,7 @@ public class GBFS {
 
             List <String> heuristicVisit = new ArrayList<>();
             List <Integer> heuristicValue = new ArrayList<>();
-            for (String neighbor : getNeighbors(current.word)) {
+            for (String neighbor : Word.getNeighbors(current.word)) {
                 int neighborHeuristic = HeuristicNode.calculateHeuristic(neighbor, end);
                 heuristicValue.add(neighborHeuristic);
                 heuristicVisit.add(neighbor);
@@ -51,6 +53,7 @@ public class GBFS {
 
             for (String neighbor : heuristicVisit) {
                 if (!visited.contains(neighbor)) {
+                    checkedNode++;
                     visited.add(neighbor);
                     queue.add(new HeuristicNode(neighbor, current, HeuristicNode.calculateHeuristic(neighbor, end)));
                 }
@@ -59,24 +62,4 @@ public class GBFS {
         return null;
     }
 
-    public static List<String> getNeighbors(String word) {
-        List<String> neighbors = new ArrayList<>();
-        char[] wordArray = word.toCharArray();
-
-        for (int i = 0; i < wordArray.length; i++) {
-            char originalChar = wordArray[i];
-            for (char c = 'a'; c <= 'z'; c++) {
-                if (c != originalChar) {
-                    wordArray[i] = c;
-                    String newWord = new String(wordArray);
-                    if (Word.dictionary.contains(newWord)) {
-                        neighbors.add(newWord);
-                    }
-                }
-            }
-            wordArray[i] = originalChar;
-        }
-
-        return neighbors;
-    }
 }

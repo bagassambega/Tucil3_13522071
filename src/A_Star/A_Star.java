@@ -5,6 +5,8 @@ import Dictionary.Word;
 import java.util.*;
 
 public class A_Star {
+    public static int checkedNode = 0;
+
     public static List<String> findLadder(String start, String end) {
         if (!Word.dictionary.contains(end)) {
             return null;
@@ -33,10 +35,11 @@ public class A_Star {
 
             closedSet.add(current.word);
 
-            for (String neighbor : getNeighbors(current.word)) {
+            for (String neighbor : Word.getNeighbors(current.word)) {
                 if (closedSet.contains(neighbor)) {
                     continue;
                 }
+                checkedNode++;
 
                 int newGCost = current.gCost + 1;
 
@@ -49,26 +52,5 @@ public class A_Star {
             }
         }
         return null;
-    }
-
-    public static List<String> getNeighbors(String word) {
-        List <String> neighbors = new ArrayList<>();
-
-        for (int i = 0; i < word.length(); i++) {
-            char[] wordChars = word.toCharArray();
-            char original = wordChars[i];
-
-            for (char c = 'a'; c <= 'z'; c++) {
-                if (c == original) {
-                    continue;
-                }
-                wordChars[i] = c;
-                if (Word.isWordExist(new String(wordChars))) {
-                    neighbors.add(new String(wordChars));
-                }
-            }
-            wordChars[i] = original;
-        }
-        return neighbors;
     }
 }

@@ -4,30 +4,11 @@ import java.util.*;
 import Dictionary.*;
 
 public class UCS {
-    public static List<String> getNeighbors(String word) {
-        List<String> neighbors = new ArrayList<String>();
-        char[] wordChars = word.toCharArray();
-
-        for (int i = 0; i < wordChars.length; i++) {
-            char original = wordChars[i];
-            for (char c = 'a'; c <= 'z'; c++) {
-                if (c == original) {
-                    continue;
-                }
-                wordChars[i] = c;
-                if (Word.isWordExist(new String(wordChars))) {
-//                    System.out.println("Checking: " + new String(wordChars));
-                    neighbors.add(new String(wordChars));
-                }
-            }
-            wordChars[i] = original;
-        }
-        return neighbors;
-    }
+    public static int checkedNode = 0;
 
     public static List<String> findLadder(String start, String end) {
-        PriorityQueue<Node> queue = new PriorityQueue<Node>(Comparator.comparingInt(node -> node.cost));
-        Set <String> visited = new HashSet<String>();
+        PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(node -> node.cost));
+        Set <String> visited = new HashSet<>();
         queue.add(new Node(start, null, 0));
 
         while (!queue.isEmpty()) {
@@ -37,6 +18,7 @@ public class UCS {
             if (visited.contains(currentWord)) {
                 continue;
             }
+            checkedNode++;
 
             if (currentWord.equalsIgnoreCase(end)) {
                 List<String> path = new ArrayList<>();
@@ -51,7 +33,7 @@ public class UCS {
 
             visited.add(currentWord);
 
-            List <String> neighbors = getNeighbors(currentWord);
+            List <String> neighbors = Word.getNeighbors(currentWord);
             for (String neighbor : neighbors) {
                 if (!visited.contains(neighbor)) {
                     queue.add(new Node(neighbor, currentNode, currentNode.cost + 1));

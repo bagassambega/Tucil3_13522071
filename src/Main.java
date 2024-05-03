@@ -52,6 +52,7 @@ public class Main {
         List<String> path = new ArrayList<>();
         if (choice == 1) {
             path = UCS.findLadder(first, second);
+            System.out.println("Jumlah node yang dikunjungi: " + UCS.checkedNode);
         } else if (choice == 2) {
             path = GBFS.findLadder(first, second);
         } else if (choice == 3) {
