@@ -1,10 +1,7 @@
 package GUI;
 import javax.swing.*;
-import java.util.List;
 import java.awt.*;
-
 import Dictionary.*;
-import UCS.*;
 
 public class MainGUI extends JFrame {
     JTextField t1 = new JTextField(40);
@@ -19,12 +16,13 @@ public class MainGUI extends JFrame {
         this.setSize(500, 300);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
 
         // create title
         JLabel titleLabel = new JLabel("Word Ladder Solver", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setFont(new Font("Montserrat", Font.BOLD, 24));
 
         // create input panel
         JPanel inputGrid = new JPanel(new GridBagLayout());
@@ -34,7 +32,7 @@ public class MainGUI extends JFrame {
 
         // description label
         JLabel descriptionLabel = new JLabel("Penyelesaian permainan Word Ladder", SwingConstants.CENTER);
-        descriptionLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        descriptionLabel.setFont(new Font("Montserrat", Font.PLAIN, 14));
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
@@ -43,13 +41,15 @@ public class MainGUI extends JFrame {
         inputGrid.add(descriptionLabel, gbc);
 
         // add labels and text fields to the grid
-        JLabel firstWordLabel = new JLabel("First Word:");
+        JLabel firstWordLabel = new JLabel("First Word:", SwingConstants.CENTER);
+        firstWordLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
         inputGrid.add(firstWordLabel, gbc);
 
-        JLabel secondWordLabel = new JLabel("Second Word:");
+        JLabel secondWordLabel = new JLabel("Second Word:", SwingConstants.CENTER);
+        secondWordLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
@@ -71,7 +71,7 @@ public class MainGUI extends JFrame {
         inputGrid.add(errorLabel, gbc);
 
         // panel button
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 0));
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 15));
 
         // add action listener to the buttons
         b1.addActionListener(e -> processUCS());
@@ -116,8 +116,8 @@ public class MainGUI extends JFrame {
     }
 
     public void processUCS() {
-        String start = t1.getText();
-        String end = t2.getText();
+        String start = t1.getText().trim();
+        String end = t2.getText().trim();
         String err = getError();
         if (!err.isEmpty()) {
             errorLabel.setText(err);
