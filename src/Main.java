@@ -11,9 +11,8 @@ import GUI.*;
 
 public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
-//        GUI gui = new GUI("Word Ladder Solver");
-//        gui.fillMainGUI();
-
+        MainGUI gui = new MainGUI("Word Ladder Solver");
+        gui.setVisible(true);
         // Get input
         DictionaryMaker.makeDictionary("../data");
         Scanner input = new Scanner(System.in);
