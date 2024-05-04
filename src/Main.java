@@ -7,9 +7,13 @@ import Dictionary.*;
 import UCS.*;
 import GBFS.*;
 import A_Star.*;
+import GUI.*;
 
 public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException {
+//        GUI gui = new GUI("Word Ladder Solver");
+//        gui.fillMainGUI();
+
         // Get input
         DictionaryMaker.makeDictionary("../data");
         Scanner input = new Scanner(System.in);
@@ -64,7 +68,6 @@ public class Main {
         // Solve UCS
         if (path == null) {
             System.out.println("Tidak ada jalur yang ditemukan.");
-            return;
         } else {
             System.out.println("Jalur yang ditemukan: ");
             for (String word : path) {
