@@ -1,40 +1,28 @@
 package A_Star;
 
-import java.util.PriorityQueue;
+import GBFS.*;
 
 public class StarNode implements Comparable<StarNode>{
     public String word;
-    int gCost; // Cost to reach this node
-    int hCost; // Heuristic value
+    int fn; // Cost to reach this node
+    int gn; // Heuristic value
+    int hn; // Total cost, fn + gn
 
-    public StarNode(String word, int gCost, int hCost) {
+    public StarNode(String word, int fn, int gn) {
         this.word = word;
-        this.gCost = gCost;
-        this.hCost = hCost;
+        this.fn = fn;
+        this.gn = gn;
+        this.hn = fn + gn;
     }
 
     public static int heuristic(String first, String end) {
-        int distance = 0;
-        for (int i = 0; i < first.length(); i++) {
-            if (first.charAt(i) != end.charAt(i)) {
-                distance++;
-            }
-        }
-        return distance;
+        return HeuristicNode.calculateHeuristic(first, end);
     }
 
-    public static int getGCost(PriorityQueue<StarNode> openSet, String word) {
-        for (StarNode node : openSet) {
-            if (node.word.equals(word)) {
-                return node.gCost;
-            }
-        }
-        return Integer.MAX_VALUE;
-    }
 
     @Override
     public int compareTo(StarNode other) {
-        return Integer.compare(this.gCost + this.hCost, other.gCost + other.hCost);
+        return Integer.compare(this.hn, other.hn);
     }
 
     @Override

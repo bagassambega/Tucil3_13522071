@@ -11,7 +11,8 @@ public class HeuristicNode implements Comparable<HeuristicNode> {
         this.heuristic = heuristic;
     }
 
-    // Nilai heuristik didasarkan ke perbedaan character antara dua kata. Makin kecil heuristik makin dekat ke tujuan
+    // Nilai heuristik didasarkan ke perbedaan character antara dua kata. Makin kecil heuristik makin dekat ke tujuan. Menggunakan
+    // algoritma Hamming Distance
     public static int calculateHeuristic(String first, String end) {
         int distance = 0;
         for (int i = 0; i < first.length(); i++) {

@@ -101,16 +101,16 @@ public class MainGUI extends JFrame {
         this.add(mainPanel);
     }
 
-    public String getError() {
-        if (!Word.isLengthSame(t1.getText(), t2.getText())) {
+    public String getError(String first, String second) {
+        if (!Word.isLengthSame(first, second)) {
             return "Kedua kata tidak memiliki panjang yang sama.";
         }
 
         boolean firstValid = true, secondValid = true;
-        if (!Word.isWordExist(t1.getText())) {
+        if (!Word.isWordExist(first)) {
             firstValid = false;
         }
-        if (!Word.isWordExist(t2.getText())) {
+        if (!Word.isWordExist(second)) {
             secondValid = false;
         }
 
@@ -125,9 +125,9 @@ public class MainGUI extends JFrame {
     }
 
     public void processUCS() {
-        String start = t1.getText().trim();
-        String end = t2.getText().trim();
-        String err = getError();
+        String start = t1.getText().trim().toLowerCase();
+        String end = t2.getText().trim().toLowerCase();
+        String err = getError(start, end);
         if (!err.isEmpty()) {
             errorLabel.setText(err);
             errorLabel.setForeground(Color.RED);
@@ -138,9 +138,9 @@ public class MainGUI extends JFrame {
     }
 
     public void processGBFS() {
-        String start = t1.getText();
-        String end = t2.getText();
-        String err = getError();
+        String start = t1.getText().trim().toLowerCase();
+        String end = t2.getText().trim().toLowerCase();
+        String err = getError(start, end);
         if (!err.isEmpty()) {
             errorLabel.setText(err);
             errorLabel.setForeground(Color.RED);
@@ -151,9 +151,9 @@ public class MainGUI extends JFrame {
     }
 
     public void processAStar() {
-        String start = t1.getText();
-        String end = t2.getText();
-        String err = getError();
+        String start = t1.getText().trim().toLowerCase();
+        String end = t2.getText().trim().toLowerCase();
+        String err = getError(start, end);
         if (!err.isEmpty()) {
             errorLabel.setText(err);
             errorLabel.setForeground(Color.RED);

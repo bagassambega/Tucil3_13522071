@@ -14,16 +14,25 @@ public class A_Star {
             return null;
         }
 
-        PriorityQueue<StarNode> openSet = new PriorityQueue<>();
-        Set<String> closedSet = new HashSet<>();
+        PriorityQueue<StarNode> queue = new PriorityQueue<>();
+        Set<String> visited = new HashSet<>();
         Map<String, String> parent = new HashMap<>();
+        queue.add(new StarNode(start, 0, StarNode.heuristic(start, end)));
 
-        openSet.add(new StarNode(start, 0, StarNode.heuristic(start, end)));
+        while (!queue.isEmpty()) {
+            // Sortir queue berdasarkna hn = fn + gn
+            sortQueue(queue);
 
-        while (!openSet.isEmpty()) {
-            StarNode current = openSet.poll();
+            StarNode current = queue.poll();
+            assert current != null;
+            String currentWord = current.word;
 
-            if (current.word.equalsIgnoreCase(end)) {
+            if (visited.contains(currentWord)) {
+                continue;
+            }
+            checkedNode++;
+
+            if (currentWord.equalsIgnoreCase(end)) {
                 String temp = current.word;
                 List<String> path = new ArrayList<>();
                 while (parent.containsKey(temp)) {
@@ -37,26 +46,23 @@ public class A_Star {
                 return path;
             }
 
-            closedSet.add(current.word);
+            visited.add(currentWord);
 
-            for (String neighbor : Word.getNeighbors(current.word)) {
-                if (closedSet.contains(neighbor)) {
-                    continue;
-                }
-                checkedNode++;
-
-                int newGCost = current.gCost + 1;
-
-                if (!openSet.contains(new StarNode(neighbor, 0, 0)) ||
-                        newGCost < StarNode.getGCost(openSet, neighbor)) {
-                    parent.put(neighbor, current.word);
-
-                    openSet.add(new StarNode(neighbor, newGCost, newGCost + StarNode.heuristic(neighbor, end)));
+            for (String next : Word.getNeighbors(currentWord)) {
+                if (!visited.contains(next)) {
+                    queue.add(new StarNode(next, current.fn + 1, StarNode.heuristic(next, end)));
+                    parent.put(next, currentWord);
                 }
             }
         }
         long lastMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         memoryUsage = lastMemory - firstMemory;
         return null;
+    }
+
+    public static void sortQueue(PriorityQueue<StarNode> queue) {
+        List<StarNode> list = new ArrayList<>(queue);
+        list.sort(Comparator.comparingInt(node -> node.hn));
+        new PriorityQueue<>(list);
     }
 }

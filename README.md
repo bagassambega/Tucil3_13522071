@@ -7,6 +7,9 @@
 Program ini adalah program yang dibuat untuk menyelesaikan permainan Word Ladder menggunakan algoritma UCS (_Uniform Cost Search_), 
 Greedy Best First Search, dan A*. Program ini dibuat dalam rangka memenuhi Tugas Kecil 3 Strategi Algoritma menggunakan bahasa Java dan berbasis GUI dengan Java Swing.
 
+Penyelesaian menggunakan algoritma UCS memakai _cost_ banyak langkah yang diperlukan untuk berpindah dari satu kata ke kata lainnya. Sedangkan penyelesaian menggunakan Greedy Best First Search menggunakan
+fungsi heuristik jarak dari kata saat ini ke kata tujuan menggunakan _Hamming distance_, yaitu banyak perbedaan karakter antarkata. Algoritma A* menggabungkan keduanya.
+
 ## Daftar Isi
 1. [Spesifikasi Program](#spesifikasi-program)
 2. [Instalasi Program](#instalasi-program)
@@ -57,6 +60,8 @@ Untuk menjalankan program ini, diperlukan Java Runtime Environment (JRE) terinst
     java Main
     ```
 ## Cara Penggunaan
+<img src="docs/main-window.png" alt="Gambar jendela utama program">
+
 1. Jalankan program dengan cara pada bagian [Instalasi Program](#instalasi-program)
 2. Masukkan kata awal dan kata akhir yang ingin dicari _path_-nya
 3. Pilih algoritma yang ingin digunakan dengan menekan tombol di bawah _input_
