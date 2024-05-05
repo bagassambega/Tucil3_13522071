@@ -106,6 +106,10 @@ public class MainGUI extends JFrame {
             return "Kedua kata tidak memiliki panjang yang sama.";
         }
 
+        if (first.equalsIgnoreCase(second)) {
+            return "Kedua kata sama.";
+        }
+
         boolean firstValid = true, secondValid = true;
         if (!Word.isWordExist(first)) {
             firstValid = false;
