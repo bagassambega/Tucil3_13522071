@@ -13,21 +13,17 @@ public class Result extends JFrame {
     public Result(String title, String start, String second, int method) {
         super(title);
         this.setSize(500, 300);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
 
         JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 
         JLabel titleLabel = new JLabel("Word Ladder Result", SwingConstants.CENTER);
         titleLabel.setFont(titleLabel.getFont().deriveFont(24.0f));
         mainPanel.add(titleLabel);
 
         List <String> pathResult = new ArrayList<>();
-        Runtime runtime = Runtime.getRuntime();
-        runtime.gc();
-        long memoryBefore = runtime.totalMemory() - runtime.freeMemory();
 
         if (method == 0) {
             pathResult = UCS.findLadder(start, second);
@@ -36,34 +32,46 @@ public class Result extends JFrame {
         } else if (method == 2) {
             pathResult = A_Star.findLadder(start, second);
         }
-        runtime.gc();
-        long memoryAfter = runtime.totalMemory() - runtime.freeMemory();
 
         if (pathResult == null || pathResult.isEmpty()) {
             JLabel label = new JLabel("Tidak ada jalur yang ditemukan.", SwingConstants.CENTER);
             label.setFont(label.getFont().deriveFont(16.0f));
             mainPanel.add(label);
         } else {
+            JPanel resultPanel = new JPanel();
+            resultPanel.setLayout(new BoxLayout(resultPanel, BoxLayout.Y_AXIS));
             for (String word : pathResult) {
                 JLabel label = new JLabel(word, SwingConstants.CENTER);
                 label.setFont(new Font("Calibri", Font.PLAIN, 14));
-                mainPanel.add(label);
+                resultPanel.add(label);
             }
+            JScrollPane scrollPane = new JScrollPane(resultPanel);
+            scrollPane.setPreferredSize(new Dimension(400, 180));
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+            scrollPane.setVisible(true);
+            mainPanel.add(scrollPane);
         }
 
-        // Show how many words it takes
+        // Tampilkan jumlah kata yang diperiksa
         JLabel numberOfWords = new JLabel("", SwingConstants.CENTER);
+        JLabel memoryUsage = new JLabel("", SwingConstants.CENTER);
         if (method == 0) {
-            numberOfWords.setText(String.valueOf("Banyak artikel diperiksa: " + UCS.checkedNode));
+            numberOfWords.setText("Banyak artikel diperiksa: " + UCS.checkedNode);
+            memoryUsage.setText("Memory usage: " + UCS.memoryUsage/1024 + " KB");
+            UCS.checkedNode = 0;
         } else if (method == 1) {
-            numberOfWords.setText(String.valueOf("Banyak artikel diperiksa: " + GBFS.checkedNode));
+            numberOfWords.setText("Banyak artikel diperiksa: " + GBFS.checkedNode);
+            memoryUsage.setText("Memory usage: " + GBFS.memoryUsage/1024 + " KB");
+            GBFS.checkedNode = 0;
         } else {
-            numberOfWords.setText(String.valueOf("Banyak artikel diperiksa: " + A_Star.checkedNode));
+            numberOfWords.setText("Banyak artikel diperiksa: " + A_Star.checkedNode);
+            memoryUsage.setText("Memory usage: " + A_Star.memoryUsage/1024 + " KB");
+            A_Star.checkedNode = 0;
         }
         mainPanel.add(numberOfWords);
-
-        JLabel memoryUsage = new JLabel("Memory usage: " + (memoryAfter - memoryBefore) / 1024 + " KB", SwingConstants.CENTER);
         mainPanel.add(memoryUsage);
+
 
         this.add(mainPanel);
     }

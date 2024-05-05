@@ -1,5 +1,6 @@
 package GUI;
 import javax.swing.*;
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 import Dictionary.*;
 
@@ -42,14 +43,14 @@ public class MainGUI extends JFrame {
 
         // add labels and text fields to the grid
         JLabel firstWordLabel = new JLabel("First Word:", SwingConstants.CENTER);
-        firstWordLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
+        firstWordLabel.setFont(new Font("Lato", Font.BOLD, 16));
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
         inputGrid.add(firstWordLabel, gbc);
 
         JLabel secondWordLabel = new JLabel("Second Word:", SwingConstants.CENTER);
-        secondWordLabel.setFont(new Font("Calibri", Font.PLAIN, 14));
+        secondWordLabel.setFont(new Font("Lato", Font.BOLD, 16));
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
@@ -58,11 +59,19 @@ public class MainGUI extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridwidth = 1;
+        t1.setPreferredSize(new Dimension(40, 40));
+        t1.setBorder(new MatteBorder(0, 0, 1, 0, Color.BLACK));
+        t1.setHorizontalAlignment(SwingConstants.CENTER);
+        t1.setFont(new Font("Lato", Font.PLAIN, 12));
         inputGrid.add(t1, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 2;
         gbc.gridwidth = 1;
+        t2.setPreferredSize(new Dimension(40, 40));
+        t2.setBorder(new MatteBorder(0, 0, 1, 0, Color.BLACK));
+        t2.setHorizontalAlignment(SwingConstants.CENTER);
+        t2.setFont(new Font("Lato", Font.PLAIN, 12));
         inputGrid.add(t2, gbc);
 
         gbc.gridx = 0;

@@ -5,8 +5,10 @@ import Dictionary.*;
 
 public class UCS {
     public static int checkedNode = 0;
+    public static long memoryUsage;
 
     public static List<String> findLadder(String start, String end) {
+        long firstMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(node -> node.cost));
         Set <String> visited = new HashSet<>();
         queue.add(new Node(start, null, 0));
@@ -28,6 +30,8 @@ public class UCS {
                     node = node.parent;
                 }
                 Collections.reverse(path);
+                long lastMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+                memoryUsage = lastMemory - firstMemory;
                 return path;
             }
 
@@ -40,6 +44,8 @@ public class UCS {
                 }
             }
         }
+        long lastMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        memoryUsage = lastMemory - firstMemory;
 
         return null;
     }

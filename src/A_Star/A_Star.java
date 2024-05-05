@@ -6,8 +6,10 @@ import java.util.*;
 
 public class A_Star {
     public static int checkedNode = 0;
+    public static long memoryUsage;
 
     public static List<String> findLadder(String start, String end) {
+        long firstMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         if (!Word.dictionary.contains(end)) {
             return null;
         }
@@ -30,6 +32,8 @@ public class A_Star {
                 }
                 path.add(start);
                 Collections.reverse(path);
+                long lastMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+                memoryUsage = lastMemory - firstMemory;
                 return path;
             }
 
@@ -51,6 +55,8 @@ public class A_Star {
                 }
             }
         }
+        long lastMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        memoryUsage = lastMemory - firstMemory;
         return null;
     }
 }
