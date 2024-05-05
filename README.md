@@ -36,9 +36,7 @@ masukkan sebuah file berformat .txt ke folder `/data` yang berisi kumpulan kata 
 Semua kata yang dimasukkan dan juga diambil dari `/data` diubah  ke _lowercase_. Ada kemungkinan _path_ yang dihasilkan berbeda karena perbedaan kamus yang digunakan.
 
 **_NOTE:_**
-Program menghitung banyak kata yang dilalui sebagai panjang _path_ result dan banyak kata diperiksa sebagai jumlah simpul kata yang diperiksa.
-Banyak kata yang diperiksa juga termasuk dengan memeriksa kata tujuan, sehingga banyak kata diperiksa - 1 adalah total kata yang diperiksa jika tidak memeriksa kata terakhir.
-Hal ini penting terutama pada Greedy Best First Search yaitu banyak kata dilalui = banyak kaya diperiksa - 1.
+Program menghitung juga kata awal dan kata akhir pada banyak kata dilalui dan node dikunjungi
 
 ## Instalasi Program
 Untuk menjalankan program ini, diperlukan Java Runtime Environment (JRE) terinstal yang dapat diunduh di https://www.java.com/en/download/. Setelah Java terpasang di perangkat, ikuti langkah-langkah berikut untuk menjalankan program ini:
