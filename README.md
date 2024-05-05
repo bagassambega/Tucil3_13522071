@@ -22,11 +22,10 @@ Program ini dibuat menggunakan bahasa Java dan berbasis GUI dengan Java Swing. P
 - Menampilkan _output_ berupa _path_ dari kata awal ke kata akhir, banyak langkah yang diperlukan, waktu eksekusi, dan estimasi besar memori yang digunakan
 
 Program Word Ladder _Solver_ ini menggunakan kamus bahasa Inggris yang berasal dari beberapa sumber yang sudah disediakan di folder `/data`. Kamus yang digunakan adalah:
-1. github.com/dwyl (https://github.com/dwyl/english-words)
-2. Merriam-Webster (https://github.com/matthewreagan/WebstersEnglishDictionary/)
-3. Collins (https://boardgames.stackexchange.com/questions/38366/latest-collins-scrabble-words-list-in-text-file) (Search through https://www.collinsdictionary.com/dictionary/english)
-4. Linux Mint list of words (libs/word.txt)
-5. Free Dev API (https://github.com/meetDeveloper/freeDictionaryAPI/)
+1. github.com/dwyl (https://github.com/dwyl/english-words)ersEnglishDictionary/)
+2. Collins (https://boardgames.stackexchange.com/questions/38366/latest-collins-scrabble-words-list-in-text-file) (Search through https://www.collinsdictionary.com/dictionary/english)
+3. Linux Mint list of words (libs/word.txt)
+4. Free Dev API (https://github.com/meetDeveloper/freeDictionaryAPI/)
 
 **_NOTE_:**
 Ada kemungkinan besar beberapa kata tidak terdaftar pada kamus-kamus yang sudah ditambahkan di atas. Untuk menambahkan kamus Anda sendiri,
@@ -36,7 +35,7 @@ masukkan sebuah file berformat .txt ke folder `/data` yang berisi kumpulan kata 
 Semua kata yang dimasukkan dan juga diambil dari `/data` diubah  ke _lowercase_. Ada kemungkinan _path_ yang dihasilkan berbeda karena perbedaan kamus yang digunakan.
 
 **_NOTE:_**
-Program menghitung juga kata awal dan kata akhir pada banyak kata dilalui dan node dikunjungi
+Program menghitung juga kata awal dan kata akhir pada banyak kata dilalui dan node dikunjungi.
 
 ## Instalasi Program
 Untuk menjalankan program ini, diperlukan Java Runtime Environment (JRE) terinstal yang dapat diunduh di https://www.java.com/en/download/. Setelah Java terpasang di perangkat, ikuti langkah-langkah berikut untuk menjalankan program ini:
