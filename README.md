@@ -15,7 +15,7 @@ Greedy Best First Search, dan A*. Program ini dibuat dalam rangka memenuhi Tugas
 ## Spesifikasi Program
 Program ini dibuat menggunakan bahasa Java dan berbasis GUI dengan Java Swing. Program ini memiliki beberapa fitur, yaitu:
 - Memilih algoritma yang ingin digunakan (UCS, Greedy Best First Search, A*)
-- Memasukkan kata awal dan kata akhir
+- Memasukkan dan validasi kata awal dan kata akhir
 - Menampilkan _output_ berupa _path_ dari kata awal ke kata akhir, banyak langkah yang diperlukan, waktu eksekusi, dan estimasi besar memori yang digunakan
 
 Program Word Ladder _Solver_ ini menggunakan kamus bahasa Inggris yang berasal dari beberapa sumber yang sudah disediakan di folder `/data`. Kamus yang digunakan adalah:
@@ -47,7 +47,7 @@ Untuk menjalankan program ini, diperlukan Java Runtime Environment (JRE) terinst
    chmod +x run.sh
     ./run.sh
    ```
-   pada Linux/MacOS. Atau _double click_ pada `run,sh` atau `run.bat` pada _file explorer_.
+   pada Linux/MacOS. Atau _double click_ pada `run.sh` atau `run.bat` pada _file explorer_.
 3. Jika program tidak dapat dijalankan dengan menggunakan _script_ di atas, maka jalankan program dengan menjalankan perintah berikut di terminal:
     ```
     cd src
