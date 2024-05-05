@@ -10,14 +10,10 @@ public class A_Star {
 
     public static List<String> findLadder(String start, String end) {
         long firstMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-        if (!Word.dictionary.contains(end)) {
-            return null;
-        }
 
         PriorityQueue<StarNode> queue = new PriorityQueue<>();
         Set<String> visited = new HashSet<>();
-        Map<String, String> parent = new HashMap<>();
-        queue.add(new StarNode(start, 0, StarNode.heuristic(start, end)));
+        queue.add(new StarNode(start, 0, StarNode.heuristic(start, end), null));
 
         while (!queue.isEmpty()) {
             // Sortir queue berdasarkna hn = fn + gn
@@ -33,13 +29,12 @@ public class A_Star {
             checkedNode++;
 
             if (currentWord.equalsIgnoreCase(end)) {
-                String temp = current.word;
+                StarNode temp = current;
                 List<String> path = new ArrayList<>();
-                while (parent.containsKey(temp)) {
-                    path.add(temp);
-                    temp = parent.get(temp);
+                while (temp != null) {
+                    path.add(temp.word);
+                    temp = temp.parent;
                 }
-                path.add(start);
                 Collections.reverse(path);
                 long lastMemory = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
                 memoryUsage = lastMemory - firstMemory;
@@ -50,8 +45,7 @@ public class A_Star {
 
             for (String next : Word.getNeighbors(currentWord)) {
                 if (!visited.contains(next)) {
-                    queue.add(new StarNode(next, current.fn + 1, StarNode.heuristic(next, end)));
-                    parent.put(next, currentWord);
+                    queue.add(new StarNode(next, current.fn + 1, StarNode.heuristic(next, end), current));
                 }
             }
         }

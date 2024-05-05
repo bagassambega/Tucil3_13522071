@@ -7,12 +7,14 @@ public class StarNode implements Comparable<StarNode>{
     int fn; // Cost to reach this node
     int gn; // Heuristic value
     int hn; // Total cost, fn + gn
+    StarNode parent;
 
-    public StarNode(String word, int fn, int gn) {
+    public StarNode(String word, int fn, int gn, StarNode parent) {
         this.word = word;
         this.fn = fn;
         this.gn = gn;
         this.hn = fn + gn;
+        this.parent = parent;
     }
 
     public static int heuristic(String first, String end) {
