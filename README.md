@@ -19,10 +19,32 @@ fungsi heuristik jarak dari kata saat ini ke kata tujuan menggunakan _Hamming di
 Program ini dibuat menggunakan bahasa Java dan berbasis GUI dengan Java Swing. Program ini memiliki beberapa fitur, yaitu:
 - Memilih algoritma yang ingin digunakan (UCS, Greedy Best First Search, A*)
 - Memasukkan dan validasi kata awal dan kata akhir
+- Menambahkan kamus sendiri ke folder `/data`
 - Menampilkan _output_ berupa _path_ dari kata awal ke kata akhir, banyak langkah yang diperlukan, waktu eksekusi, dan estimasi besar memori yang digunakan
 
 Program Word Ladder _Solver_ ini menggunakan kamus bahasa Inggris yang berasal dari beberapa sumber yang sudah disediakan di folder `/data`. Kamus yang digunakan adalah 
 _dictionary_ dari Java Oracle.
+
+Struktur program:
+```
+src/
+├── Main.java
+├── UCS/
+│   ├── Node.java
+│   └── UCS.java
+├── GBFS/
+│   ├── HeuristicNode.java
+│   └── GBFS.java
+├── A*/
+│   ├── StarNode.java
+│   └── A_Star.java
+├── GUI/
+│   ├── MainGUI.java
+│   └── Result.java
+└── Dictionary/
+    ├── Word.java
+    └── DictionaryMaker.java
+```
 
 **_NOTE_:**
 Ada kemungkinan besar beberapa kata tidak terdaftar pada kamus-kamus yang sudah ditambahkan di atas. Untuk menambahkan kamus Anda sendiri,

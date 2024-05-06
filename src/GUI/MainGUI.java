@@ -136,6 +136,7 @@ public class MainGUI extends JFrame {
             errorLabel.setText(err);
             errorLabel.setForeground(Color.RED);
         } else {
+            errorLabel.setText("");
             Result result = new Result("Penyelesaian dengan UCS", start, end, 0);
             result.setVisible(true);
         }
@@ -149,6 +150,7 @@ public class MainGUI extends JFrame {
             errorLabel.setText(err);
             errorLabel.setForeground(Color.RED);
         } else {
+            errorLabel.setText("");
             Result result = new Result("Greedy Best First Search", start, end, 1);
             result.setVisible(true);
         }
@@ -162,6 +164,7 @@ public class MainGUI extends JFrame {
             errorLabel.setText(err);
             errorLabel.setForeground(Color.RED);
         } else {
+            errorLabel.setText("");
             Result result = new Result("A*", start, end, 2);
             result.setVisible(true);
         }
