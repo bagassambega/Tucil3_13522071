@@ -4,16 +4,16 @@ import GBFS.*;
 
 public class StarNode implements Comparable<StarNode>{
     public String word;
-    int fn; // Cost to reach this node
-    int gn; // Heuristic value
-    int hn; // Total cost, fn + gn
+    int gn; // Cost to reach this node
+    int hn; // Heuristic value
+    int fn; // Total evaluation value, fn = gn + hn
     StarNode parent;
 
-    public StarNode(String word, int fn, int gn, StarNode parent) {
+    public StarNode(String word, int gn, int hn, StarNode parent) {
         this.word = word;
-        this.fn = fn;
         this.gn = gn;
-        this.hn = fn + gn;
+        this.hn = hn;
+        this.fn = gn + hn;
         this.parent = parent;
     }
 
@@ -24,7 +24,7 @@ public class StarNode implements Comparable<StarNode>{
 
     @Override
     public int compareTo(StarNode other) {
-        return Integer.compare(this.hn, other.hn);
+        return Integer.compare(this.fn, other.fn);
     }
 
     @Override

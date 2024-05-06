@@ -16,7 +16,7 @@ public class A_Star {
         queue.add(new StarNode(start, 0, StarNode.heuristic(start, end), null));
 
         while (!queue.isEmpty()) {
-            // Sortir queue berdasarkna hn = fn + gn
+            // Sortir queue berdasarkna fn = gn + hn
             sortQueue(queue);
 
             StarNode current = queue.poll();
@@ -45,7 +45,7 @@ public class A_Star {
 
             for (String next : Word.getNeighbors(currentWord)) {
                 if (!visited.contains(next)) {
-                    queue.add(new StarNode(next, current.fn + 1, StarNode.heuristic(next, end), current));
+                    queue.add(new StarNode(next, current.gn + 1, StarNode.heuristic(next, end), current));
                 }
             }
         }
@@ -56,7 +56,7 @@ public class A_Star {
 
     public static void sortQueue(PriorityQueue<StarNode> queue) {
         List<StarNode> list = new ArrayList<>(queue);
-        list.sort(Comparator.comparingInt(node -> node.hn));
+        list.sort(Comparator.comparingInt(node -> node.fn));
         new PriorityQueue<>(list);
     }
 }
